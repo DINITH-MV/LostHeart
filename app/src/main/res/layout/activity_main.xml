@@ -24,7 +24,6 @@
     </Button>
 
 
-
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="390dp"
@@ -48,10 +47,10 @@
             android:layout_marginStart="130dp"
             android:layout_marginTop="130dp"
             android:layout_marginEnd="130dp"
-            android:textColor="@color/white"
             android:background="@drawable/roundstyle"
             android:backgroundTint="@color/black"
-            android:text="New Game"></Button>
+            android:text="New Game"
+            android:textColor="@color/white"></Button>
 
         <Button
             android:id="@+id/resume"
@@ -92,13 +91,13 @@
             android:id="@+id/reset_highest_score"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
             android:layout_marginStart="91dp"
             android:layout_marginTop="200dp"
             android:layout_marginEnd="91dp"
             android:layout_marginBottom="40dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
             android:text="Reset Highest Score" />
 
         <RelativeLayout
@@ -107,8 +106,7 @@
             android:layout_height="525dp"
             android:background="@drawable/roundstyle"
             android:gravity="center"
-            tools:ignore="MissingConstraints">
-        </RelativeLayout>
+            tools:ignore="MissingConstraints"></RelativeLayout>
 
     </RelativeLayout>
 
@@ -116,19 +114,17 @@
         android:id="@+id/highest_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text=" Highest --- Score: 0"
-        android:textColor="@android:color/white"
+        android:layout_marginTop="5px"
         android:background="@drawable/roundstyle2"
         android:backgroundTint="@color/black"
         android:paddingHorizontal="10dp"
         android:paddingVertical="12px"
-        android:layout_marginTop="5px"
+        android:text=" Highest --- Score: 0"
+        android:textColor="@android:color/white"
         android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </TextView>
+        app:layout_constraintTop_toTopOf="parent"></TextView>
 
     <Button
         android:id="@+id/end_game"
@@ -145,11 +141,11 @@
         android:layout_width="385dp"
         android:layout_height="360dp"
         android:layout_alignParentBottom="true"
-        android:paddingTop="170px"
         android:layout_marginBottom="40px"
-        android:orientation="vertical"
         android:background="@drawable/roundstyle"
         android:backgroundTint="#f3eddb"
+        android:orientation="vertical"
+        android:paddingTop="170px"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -166,17 +162,14 @@
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
-                android:text="UP">
-            </Button>
-
+                android:text="UP"></Button>
         </LinearLayout>
 
 
         <LinearLayout
-
             android:layout_width="match_parent"
-            android:gravity="center"
-            android:layout_height="100dp">
+            android:layout_height="100dp"
+            android:gravity="center">
 
             <Button
                 android:id="@+id/left"
@@ -203,7 +196,6 @@
                 android:layout_margin="5dp"
                 android:gravity="center"
                 android:text="RIGHT"></Button>
-
         </LinearLayout>
 
 
@@ -225,7 +217,6 @@
 
 
     </LinearLayout>
-
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
