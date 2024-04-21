@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.os.Handler
 import android.view.View
 import android.view.ViewGroup
+import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -30,6 +31,7 @@ class MainActivity : Activity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         sharedPreferences = getSharedPreferences("GamePrefs", Context.MODE_PRIVATE)
@@ -51,7 +53,7 @@ class MainActivity : Activity() {
         val score2 = findViewById<Button>(R.id.score2)
         val endGameButton = findViewById<Button>(R.id.end_game)
         highestScoreTextView = findViewById(R.id.highest_score)
-        highestScoreTextView.text = "Highest Score: $highestScore"
+        highestScoreTextView.text = " Highest --- Score: $highestScore"
 
         val meat = ImageView(this)
         val snake = ImageView(this)
@@ -68,7 +70,7 @@ class MainActivity : Activity() {
         resetButton.setOnClickListener {
             // Reset the highest score to 0
             highestScore = 0
-            highestScoreTextView.text = "Highest Score: $highestScore"
+            highestScoreTextView.text = " Highest --- Score: $highestScore"
             saveHighestScore()
         }
 
@@ -78,7 +80,7 @@ class MainActivity : Activity() {
             resume.visibility = View.INVISIBLE
             score2.visibility = View.VISIBLE
             resetButton.visibility = View.INVISIBLE
-            endGameButton.visibility = View.INVISIBLE
+            endGameButton.visibility = View.VISIBLE
 
             val snakeWidth = 100 // Snake width in pixels
             val snakeHeight = 100 // Snake height in pixels
