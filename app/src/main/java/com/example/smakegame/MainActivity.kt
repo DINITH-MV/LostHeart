@@ -137,7 +137,7 @@ class MainActivity : Activity() {
                         if (!isGameEnded) { // Check the flag before updating the highest score
                             if (scorex > highestScore) {
                                 highestScore = scorex
-                                highestScoreTextView.text = "Highest Score: $highestScore"
+                                highestScoreTextView.text = " Highest --- Score $highestScore"
                                 saveHighestScore()
                             }
                         }
@@ -164,8 +164,8 @@ class MainActivity : Activity() {
                         }
                         "down" -> {
                             snakeY += 3
-                            if (snakeY > 670 - snake.height) {
-                                snakeY = -600f
+                            if (snakeY > 720 - snake.height) {
+                                snakeY = -650f
                             }
                             snake.translationY = snakeY
                         }

@@ -10,13 +10,14 @@
         android:id="@+id/score2"
         android:layout_width="260dp"
         android:layout_height="100px"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="320dp"
         android:background="@drawable/roundstyle2"
+        android:backgroundTint="@color/primary"
         android:text="score"
         android:textColor="@color/black"
         android:textSize="15dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/lilu"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
 
@@ -27,7 +28,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="390dp"
-        android:layout_height="490dp"
+        android:layout_height="525dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/roundstyle"
         android:gravity="center"
@@ -103,7 +104,7 @@
         <RelativeLayout
             android:id="@+id/board"
             android:layout_width="388dp"
-            android:layout_height="490dp"
+            android:layout_height="525dp"
             android:background="@drawable/roundstyle"
             android:gravity="center"
             tools:ignore="MissingConstraints">
@@ -133,7 +134,7 @@
         android:id="@+id/end_game"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="870dp"
+        android:layout_marginTop="860dp"
         android:text="End Game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,10 +142,14 @@
 
     <LinearLayout
         android:id="@+id/bottomNav"
-        android:layout_width="330dp"
-        android:layout_height="300dp"
+        android:layout_width="385dp"
+        android:layout_height="360dp"
         android:layout_alignParentBottom="true"
+        android:paddingTop="170px"
+        android:layout_marginBottom="40px"
         android:orientation="vertical"
+        android:background="@drawable/roundstyle"
+        android:backgroundTint="#f3eddb"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -161,7 +166,8 @@
                 android:layout_width="100dp"
                 android:layout_height="60dp"
                 android:layout_margin="10dp"
-                android:text="UP"></Button>
+                android:text="UP">
+            </Button>
 
         </LinearLayout>
 
