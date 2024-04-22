@@ -7,9 +7,9 @@ import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
@@ -57,9 +57,10 @@ class MainActivity : Activity() {
 
         val meat = ImageView(this)
         val snake = ImageView(this)
+        val badman = ImageView(this) // Add badman ImageView
         val snakeSegments = mutableListOf(snake)
         val handler = Handler()
-        var delayMillis = 30L
+        var delayMillis = 40L
         var currentDirection = "right"
         var scorex = 0
 
@@ -82,10 +83,12 @@ class MainActivity : Activity() {
             resetButton.visibility = View.INVISIBLE
             endGameButton.visibility = View.VISIBLE
 
-            val snakeWidth = 100 // Snake width in pixels
-            val snakeHeight = 100 // Snake height in pixels
-            val meatWidth = 200 // Meat width in pixels
-            val meatHeight = 80 // Meat height in pixels
+            val snakeWidth = 172 // Snake width in pixels
+            val snakeHeight = 300 // Snake height in pixels
+            val meatWidth = 112 // Meat width in pixels
+            val meatHeight = 294 // Meat height in pixels
+            val badmanWidth = 130 // Badman width in pixels
+            val badmanHeight = 220 // Badman height in pixels
 
             snake.setImageResource(R.drawable.snake)
             snake.setPadding(10, 10, 10, 10) // Add padding to increase touch-sensitive area
@@ -97,16 +100,27 @@ class MainActivity : Activity() {
             var snakeY = snake.y
 
             meat.setImageResource(R.drawable.meat)
-            meat.setPadding(-10, -100, -10, -100) // Add padding to increase touch-sensitive area
+            meat.setPadding(-10, -80, -10, -60) // Add padding to increase touch-sensitive area
             meat.layoutParams = ViewGroup.LayoutParams(meatWidth, meatHeight)
             board.addView(meat)
 
-            val random = Random()
-            val randomX = random.nextInt(701) - 400
-            val randomY = random.nextInt(701) - 400
+            badman.setImageResource(R.drawable.badman) // Assuming "badman" is the name of your vector drawable
+            badman.layoutParams = ViewGroup.LayoutParams(badmanWidth, badmanHeight)
+            board.addView(badman)
 
-            meat.x = randomX.toFloat()
-            meat.y = randomY.toFloat()
+            // Function to generate random coordinates for badman within the board bounds
+            fun generateRandomPosition(): Pair<Float, Float> {
+                val randomX = Random().nextInt(500 - badmanWidth)
+                val randomY = Random().nextInt(500 - badmanHeight)
+                return Pair(400f, 550f)
+            }
+
+            // Position the badman at a random location initially
+            var (badmanX, badmanY) = generateRandomPosition()
+            badman.x = badmanX
+            badman.y = badmanY
+
+            // Add logic to position the badman within the board layout
 
             fun checkFoodCollision() {
                 val meatBounds = Rect()
@@ -117,32 +131,41 @@ class MainActivity : Activity() {
                     segment.getHitRect(segmentBounds)
 
                     if (Rect.intersects(meatBounds, segmentBounds)) {
-                        val newSnakeSegment = ImageView(this)
-                        newSnakeSegment.setImageResource(R.drawable.snake)
-                        newSnakeSegment.setPadding(20, 20, 20, 20) // Add padding to increase touch-sensitive area
-                        newSnakeSegment.layoutParams = ViewGroup.LayoutParams(snakeWidth, snakeHeight)
-                        board.addView(newSnakeSegment)
-                        snakeSegments.add(newSnakeSegment)
-
-                        val randomX = random.nextInt(board.width - 600)
-                        val randomY = random.nextInt(board.height - 600)
+                        val randomX = Random().nextInt(board.width - 500)
+                        val randomY = Random().nextInt(board.height - 500)
 
                         meat.x = randomX.toFloat()
                         meat.y = randomY.toFloat()
 
                         delayMillis--
                         scorex++
-                        score2.text = "score : " + scorex.toString()
+                        score2.text = "score : $scorex"
 
                         if (!isGameEnded) { // Check the flag before updating the highest score
                             if (scorex > highestScore) {
                                 highestScore = scorex
-                                highestScoreTextView.text = " Highest --- Score $highestScore"
+                                highestScoreTextView.text = " Highest --- Score: $highestScore"
                                 saveHighestScore()
                             }
                         }
 
                         break // Exit the loop once collision is detected
+                    }
+                }
+            }
+
+            fun checkBadmanCollision() {
+                val badmanBounds = Rect()
+                badman.getHitRect(badmanBounds)
+
+                for (segment in snakeSegments) {
+                    val segmentBounds = Rect()
+                    segment.getHitRect(segmentBounds)
+
+                    if (Rect.intersects(badmanBounds, segmentBounds)) {
+                        isGameEnded = true // End the game if badman collision detected
+                        finish()
+                        return // Exit the function once collision is detected
                     }
                 }
             }
@@ -158,13 +181,13 @@ class MainActivity : Activity() {
                         "up" -> {
                             snakeY -= 3
                             if (snakeY < -600) {
-                                snakeY = board.height / 2.toFloat()
+                                snakeY = 760f
                             }
                             snake.translationY = snakeY
                         }
                         "down" -> {
                             snakeY += 3
-                            if (snakeY > 720 - snake.height) {
+                            if (snakeY > 1020 - snake.height) {
                                 snakeY = -650f
                             }
                             snake.translationY = snakeY
@@ -174,6 +197,7 @@ class MainActivity : Activity() {
                             if (snakeX < -500) {
                                 snakeX = 560f
                             }
+                            snake.scaleX = -1f // Flip the snake horizontally
                             snake.translationX = snakeX
                         }
                         "right" -> {
@@ -181,6 +205,7 @@ class MainActivity : Activity() {
                             if (snakeX > 600 - snake.width) {
                                 snakeX = -500f
                             }
+                            snake.scaleX = 1f
                             snake.translationX = snakeX
                         }
                         "pause" -> {
@@ -189,6 +214,7 @@ class MainActivity : Activity() {
                     }
 
                     checkFoodCollision()
+                    checkBadmanCollision() // Check for badman collision
                     handler.postDelayed(this, delayMillis)
                 }
             }
