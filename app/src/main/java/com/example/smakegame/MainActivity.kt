@@ -48,9 +48,10 @@ class MainActivity : Activity() {
         val leftButton = findViewById<Button>(R.id.left)
         val rightButton = findViewById<Button>(R.id.right)
         val pauseButton = findViewById<Button>(R.id.pause)
+        val mainMenu = findViewById<Button>(R.id.MainMenu)
         val newgame = findViewById<Button>(R.id.new_game)
         val resume = findViewById<Button>(R.id.resume)
-        val playagain = findViewById<Button>(R.id.playagain)
+        val playagain = findViewById<RelativeLayout>(R.id.board1)
         val score2 = findViewById<Button>(R.id.score2)
         val endGameButton = findViewById<Button>(R.id.end_game)
         highestScoreTextView = findViewById(R.id.highest_score)
@@ -111,8 +112,8 @@ class MainActivity : Activity() {
 
             // Function to generate random coordinates for badman within the board bounds
             fun generateRandomPosition(): Pair<Float, Float> {
-                val randomX = Random().nextInt(500 - badmanWidth)
-                val randomY = Random().nextInt(500 - badmanHeight)
+//                val randomX = Random().nextInt(500 - badmanWidth)
+//                val randomY = Random().nextInt(500 - badmanHeight)
                 return Pair(400f, 550f)
             }
 
@@ -132,8 +133,8 @@ class MainActivity : Activity() {
                     segment.getHitRect(segmentBounds)
 
                     if (Rect.intersects(meatBounds, segmentBounds)) {
-                        val randomX = Random().nextInt(board.width - 500)
-                        val randomY = Random().nextInt(board.height - 500)
+                        val randomX = Random().nextInt(board.width - 200)
+                        val randomY = Random().nextInt(board.height - 200)
 
                         meat.x = randomX.toFloat()
                         meat.y = randomY.toFloat()
@@ -165,8 +166,10 @@ class MainActivity : Activity() {
 
                     if (Rect.intersects(badmanBounds, segmentBounds)) {
                         isGameEnded = true // End the game if badman collision detected
-                        finish()
-                        startActivity(Intent(this@MainActivity, game_over::class.java))
+                        playagain.visibility = View.VISIBLE
+                        board.visibility = View.INVISIBLE
+                        newgame.visibility = View.INVISIBLE
+                        mainMenu.visibility = View.VISIBLE
 
                         return // Exit the function once collision is detected
                     }
@@ -251,6 +254,11 @@ class MainActivity : Activity() {
                 isGameEnded = true // Update the flag when the game ends
                 finish()
             }
+        }
+
+        mainMenu.setOnClickListener {
+            val Intent = Intent(this, newGame::class.java)
+            startActivity(Intent)
         }
 
         hideSystemUI()

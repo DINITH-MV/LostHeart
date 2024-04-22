@@ -8,14 +8,12 @@
 
     <RelativeLayout
         android:id="@+id/board"
-        android:layout_width="410dp"
-        android:layout_height="920dp"
-        android:layout_marginStart="23dp"
-        android:layout_marginTop="7dp"
-        android:layout_marginEnd="23dp"
+        android:layout_width="390dp"
+        android:layout_height="900dp"
         android:background="@drawable/roundstyle3"
         android:backgroundTint="#e5d8d7"
         android:gravity="center"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
