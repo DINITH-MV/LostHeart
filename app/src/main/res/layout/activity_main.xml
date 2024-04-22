@@ -29,7 +29,7 @@
         android:layout_width="390dp"
         android:layout_height="525dp"
         android:layout_marginTop="15dp"
-        android:background="@drawable/roundstyle"
+        android:background="@drawable/roundstyle3"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -102,9 +102,9 @@
 
         <RelativeLayout
             android:id="@+id/board"
-            android:layout_width="388dp"
+            android:layout_width="390dp"
             android:layout_height="525dp"
-            android:background="@drawable/roundstyle"
+            android:background="@drawable/roundstyle3"
             android:gravity="center"
             tools:ignore="MissingConstraints"></RelativeLayout>
 
@@ -130,7 +130,7 @@
         android:id="@+id/end_game"
         android:layout_width="260dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="860dp"
+        android:layout_marginTop="855dp"
         android:text="End Game"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -141,8 +141,8 @@
         android:layout_width="385dp"
         android:layout_height="360dp"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="40px"
-        android:background="@drawable/roundstyle"
+        android:layout_marginBottom="50px"
+        android:background="@drawable/roundstyle3"
         android:backgroundTint="#f3eddb"
         android:orientation="vertical"
         android:paddingTop="170px"

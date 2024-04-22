@@ -2,6 +2,7 @@ package com.example.smakegame
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Rect
 import android.os.Build
@@ -66,7 +67,7 @@ class MainActivity : Activity() {
 
         board.visibility = View.INVISIBLE
         playagain.visibility = View.INVISIBLE
-        score2.visibility = View.INVISIBLE
+        score2.visibility = View.VISIBLE
 
         resetButton.setOnClickListener {
             // Reset the highest score to 0
@@ -164,6 +165,7 @@ class MainActivity : Activity() {
 
                     if (Rect.intersects(badmanBounds, segmentBounds)) {
                         isGameEnded = true // End the game if badman collision detected
+                        startActivity(Intent(this@MainActivity, game_over::class.java))
                         finish()
                         return // Exit the function once collision is detected
                     }
