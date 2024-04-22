@@ -89,8 +89,9 @@ class MainActivity : Activity() {
             val snakeHeight = 300 // Snake height in pixels
             val meatWidth = 112 // Meat width in pixels
             val meatHeight = 294 // Meat height in pixels
-            val badmanWidth = 130 // Badman width in pixels
+            val badmanWidth = 160 // Badman width in pixels
             val badmanHeight = 220 // Badman height in pixels
+            badman.scaleX=-1f
 
             snake.setImageResource(R.drawable.snake)
             snake.setPadding(10, 10, 10, 10) // Add padding to increase touch-sensitive area
