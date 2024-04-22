@@ -17,6 +17,19 @@
         tools:layout_editor_absoluteY="22dp">
 
         <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="341dp"
+            android:layout_height="184dp"
+            android:layout_marginTop="120dp"
+            android:src="@drawable/themeLogo" />
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Button" />
+
+        <ImageView
             android:id="@+id/imageView"
             android:layout_width="335dp"
             android:layout_height="400dp"
