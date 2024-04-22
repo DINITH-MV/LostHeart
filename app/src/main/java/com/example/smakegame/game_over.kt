@@ -15,11 +15,13 @@ class game_over : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_game_over)
 
-        val secondActButton = findViewById<Button>(R.id.button6)
+        val secondActButton = findViewById<Button>(R.id.button60)
         secondActButton.setOnClickListener {
             val Intent = Intent(this@game_over, MainActivity::class.java)
             startActivity(Intent)
         }
+
+
 
         hideSystemUI()
     }

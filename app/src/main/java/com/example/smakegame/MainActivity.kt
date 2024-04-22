@@ -8,7 +8,6 @@ import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -165,8 +164,9 @@ class MainActivity : Activity() {
 
                     if (Rect.intersects(badmanBounds, segmentBounds)) {
                         isGameEnded = true // End the game if badman collision detected
-                        startActivity(Intent(this@MainActivity, game_over::class.java))
                         finish()
+                        startActivity(Intent(this@MainActivity, game_over::class.java))
+
                         return // Exit the function once collision is detected
                     }
                 }
@@ -249,6 +249,7 @@ class MainActivity : Activity() {
             endGameButton.setOnClickListener {
                 isGameEnded = true // Update the flag when the game ends
                 finish()
+                startActivity(Intent(this@MainActivity, game_over::class.java))
             }
         }
 

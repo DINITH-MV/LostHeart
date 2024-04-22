@@ -10,12 +10,12 @@
               <deviceKey>
                 <Key>
                   <type value="VIRTUAL_DEVICE_PATH" />
-                  <value value="C:\Users\Dinith\.android\avd\S23_API_33.avd" />
+                  <value value="C:\Users\Dinith\.android\avd\SAMSUNG_A52_UPDATED_API_34.avd" />
                 </Key>
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-04-22T07:50:00.518060800Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-04-22T10:34:13.128376300Z" />
         </State>
       </entry>
     </value>
