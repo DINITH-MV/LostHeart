@@ -1,7 +1,7 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Base.Theme.SmakeGame" parent="Theme.AppCompat.Light.NoActionBar">
+    <style name="Base.Theme.LostHeart" parent="Theme.AppCompat.Light.NoActionBar">
     </style>
 
-    <style name="Theme.SmakeGame" parent="Base.Theme.SmakeGame" />
+    <style name="Theme.LostHeart" parent="Base.Theme.LostHeart" />
 </resources>

@@ -169,7 +169,7 @@
             android:id="@+id/textView2"
             android:layout_width="240dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="35dp"
+            android:layout_marginHorizontal="30dp"
             android:layout_marginTop="54dp"
             android:fontFamily="sans-serif-condensed"
             android:text="You Killed the Girl!"

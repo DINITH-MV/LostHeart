@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.smakegame"
+    namespace = "com.example.LostHeart"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.smakegame"
+        applicationId = "com.example.LostHeart"
         minSdk = 33
         targetSdk = 34
         versionCode = 1

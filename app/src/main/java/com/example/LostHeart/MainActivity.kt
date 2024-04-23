@@ -1,4 +1,4 @@
-package com.example.smakegame
+package com.example.LostHeart
 
 import android.app.Activity
 import android.content.Context
@@ -8,7 +8,6 @@ import android.graphics.Rect
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -20,8 +19,6 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 import java.util.*
-import kotlin.math.pow
-import kotlin.math.sqrt
 
 class MainActivity : Activity() {
 

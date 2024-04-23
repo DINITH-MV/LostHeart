@@ -1,4 +1,4 @@
-package com.example.smakegame
+package com.example.LostHeart
 
 import android.content.Intent
 import android.os.Build
