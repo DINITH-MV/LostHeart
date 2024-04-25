@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
 import android.graphics.Rect
+import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -27,6 +28,10 @@ class MainActivity : Activity() {
     private var highestScore = 0
     private lateinit var sharedPreferences: SharedPreferences
     private var isGameEnded = false // Declare boolean flag to track game end
+    private lateinit var mediaPlayer: MediaPlayer
+    private lateinit var scream: MediaPlayer
+    private var isFirstIntersection = true
+    private var isScreamPlayed = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +40,10 @@ class MainActivity : Activity() {
 
         sharedPreferences = getSharedPreferences("GamePrefs", Context.MODE_PRIVATE)
         highestScore = sharedPreferences.getInt("highestScore", 0)
+
+        mediaPlayer = MediaPlayer.create(this, R.raw.laugh)
+        scream = MediaPlayer.create(this, R.raw.scream)
+        mediaPlayer.setVolume(10.0f, 10.0f)
 
         val resetButton = findViewById<Button>(R.id.reset_highest_score)
         highestScoreTextView = findViewById(R.id.highest_score)
@@ -142,6 +151,13 @@ class MainActivity : Activity() {
 
                         delayMillis--
                         scorex++
+
+                        if (!isFirstIntersection  && isGameEnded != true) {
+                            mediaPlayer.start()
+                        } else {
+                            isFirstIntersection = false
+                        }
+
                         score2.text = "score : $scorex"
 
                         if (!isGameEnded) { // Check the flag before updating the highest score
@@ -151,6 +167,7 @@ class MainActivity : Activity() {
                                 saveHighestScore()
                             }
                         }
+
 
                         break // Exit the loop once collision is detected
                     }
@@ -167,6 +184,12 @@ class MainActivity : Activity() {
 
                     if (Rect.intersects(badmanBounds, segmentBounds)) {
                         isGameEnded = true // End the game if badman collision detected
+
+                        if (!isScreamPlayed) { // Check if the scream has already been played
+                            scream.start()
+                            isScreamPlayed = true // Set the flag to true after playing the sound
+                        }
+
                         playagain.visibility = View.VISIBLE
                         board.visibility = View.INVISIBLE
                         newgame.visibility = View.INVISIBLE
