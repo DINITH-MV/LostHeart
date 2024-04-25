@@ -59,9 +59,9 @@ class MainActivity : Activity() {
         val badman = ImageView(this) // Add badman ImageView
         val snakeSegments = mutableListOf(snake)
         val handler = Handler()
-        var delayMillis = 40L
+        var delayMillis = 25L
         var currentDirection = "right"
-        var scorex = 0
+        var scorex = -1
 
         board.visibility = View.INVISIBLE
         playagain.visibility = View.INVISIBLE
@@ -83,11 +83,11 @@ class MainActivity : Activity() {
             endGameButton.visibility = View.VISIBLE
 
             val snakeWidth = 172 // Snake width in pixels
-            val snakeHeight = 300 // Snake height in pixels
+            val snakeHeight = 250 // Snake height in pixels
             val meatWidth = 112 // Meat width in pixels
             val meatHeight = 294 // Meat height in pixels
             val badmanWidth = 160 // Badman width in pixels
-            val badmanHeight = 220 // Badman height in pixels
+            val badmanHeight = 240 // Badman height in pixels
             badman.scaleX=-1f
 
             snake.setImageResource(R.drawable.snake)
@@ -110,8 +110,8 @@ class MainActivity : Activity() {
 
             // Function to generate random coordinates for badman within the board bounds
             fun generateRandomPosition(): Pair<Float, Float> {
-//                val randomX = Random().nextInt(500 - badmanWidth)
-//                val randomY = Random().nextInt(500 - badmanHeight)
+                //val randomX = Random().nextInt(500 - badmanWidth)
+                //val randomY = Random().nextInt(500 - badmanHeight)
                 return Pair(400f, 550f)
             }
 
@@ -136,6 +136,8 @@ class MainActivity : Activity() {
 
                         meat.x = randomX.toFloat()
                         meat.y = randomY.toFloat()
+
+
 
                         delayMillis--
                         scorex++
@@ -173,6 +175,30 @@ class MainActivity : Activity() {
                     }
                 }
             }
+
+            // Define a function to move the badman
+            fun moveBadman() {
+                // Implement your logic to move the badman here
+                // For example, you can move it randomly or towards a specific direction
+                // Here's a simple example of moving the badman towards the snake's current position
+                val dx = (meat.x-10) - badman.x
+                val dy = meat.y - badman.y
+
+                // Move badman towards the snake's position
+                badman.x += dx / 340
+                badman.y += dy / 340
+            }
+
+            val badmanMovementHandler = Handler()
+            val badmanMovementRunnable = object : Runnable {
+                override fun run() {
+                    moveBadman()
+                    checkBadmanCollision()
+                    badmanMovementHandler.postDelayed(this, delayMillis)
+                }
+            }
+            // Start moving the badman
+            badmanMovementHandler.postDelayed(badmanMovementRunnable, delayMillis)
 
             val runnable = object : Runnable {
                 override fun run() {
