@@ -15,6 +15,7 @@ import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
@@ -275,8 +276,29 @@ class MainActivity : Activity() {
                 resume.visibility = View.INVISIBLE
             }
             endGameButton.setOnClickListener {
-                isGameEnded = true // Update the flag when the game ends
-                finish()
+                // Create an AlertDialog
+                val alertDialogBuilder = AlertDialog.Builder(this)
+
+                // Set the title and message
+                alertDialogBuilder.setTitle("Confirm Exit")
+                alertDialogBuilder.setMessage("Are you sure you want to exit the game?")
+
+                // Set a positive button and its click listener
+                alertDialogBuilder.setPositiveButton("Yes") { _, _ ->
+                    // Finish the current activity (exit the game)
+                    finishAffinity()
+                    System.exit(0)
+                }
+
+                // Set a negative button and its click listener
+                alertDialogBuilder.setNegativeButton("No") { dialog, _ ->
+                    // Dismiss the dialog if "No" is clicked
+                    dialog.dismiss()
+                }
+
+                // Create and show the AlertDialog
+                val alertDialog = alertDialogBuilder.create()
+                alertDialog.show()
             }
         }
 

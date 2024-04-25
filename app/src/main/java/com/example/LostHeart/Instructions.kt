@@ -10,14 +10,13 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.core.view.WindowInsetsControllerCompat
 
-class newGame : AppCompatActivity() {
+class Instructions : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_new_game)
-
-        val secondActButton = findViewById<Button>(R.id.button)
+        setContentView(R.layout.activity_instructions)
+        val secondActButton = findViewById<Button>(R.id.button11)
         secondActButton.setOnClickListener {
-            val Intent = Intent(this, Instructions::class.java)
+            val Intent = Intent(this, MainActivity::class.java)
             startActivity(Intent)
         }
         hideSystemUI()
