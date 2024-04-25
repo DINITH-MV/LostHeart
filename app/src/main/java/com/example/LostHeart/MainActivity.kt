@@ -182,8 +182,8 @@ class MainActivity : Activity() {
                 // Implement your logic to move the badman here
                 // For example, you can move it randomly or towards a specific direction
                 // Here's a simple example of moving the badman towards the girl's current position
-                val dx = (boy.x-10) - badman.x
-                val dy = boy.y - badman.y
+                val dx = (girl.x) - badman.x
+                val dy = girl.y - badman.y
 
                 // Move badman towards the girl's position
                 badman.x += dx / 340
