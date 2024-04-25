@@ -54,10 +54,10 @@ class MainActivity : Activity() {
         highestScoreTextView = findViewById(R.id.highest_score)
         highestScoreTextView.text = " Highest --- Score: $highestScore"
 
-        val meat = ImageView(this)
-        val snake = ImageView(this)
+        val boy = ImageView(this)
+        val girl = ImageView(this)
         val badman = ImageView(this) // Add badman ImageView
-        val snakeSegments = mutableListOf(snake)
+        val girlSegments = mutableListOf(girl)
         val handler = Handler()
         var delayMillis = 25L
         var currentDirection = "right"
@@ -82,27 +82,27 @@ class MainActivity : Activity() {
             resetButton.visibility = View.INVISIBLE
             endGameButton.visibility = View.VISIBLE
 
-            val snakeWidth = 172 // Snake width in pixels
-            val snakeHeight = 250 // Snake height in pixels
-            val meatWidth = 112 // Meat width in pixels
-            val meatHeight = 294 // Meat height in pixels
+            val girlWidth = 172 // Snake width in pixels
+            val girlHeight = 250 // Snake height in pixels
+            val boyWidth = 112 // Meat width in pixels
+            val boyHeight = 294 // Meat height in pixels
             val badmanWidth = 160 // Badman width in pixels
             val badmanHeight = 240 // Badman height in pixels
             badman.scaleX=-1f
 
-            snake.setImageResource(R.drawable.snake)
-            snake.setPadding(10, 10, 10, 10) // Add padding to increase touch-sensitive area
-            snake.layoutParams = ViewGroup.LayoutParams(snakeWidth, snakeHeight)
-            board.addView(snake)
-            snakeSegments.add(snake)
+            girl.setImageResource(R.drawable.girl)
+            girl.setPadding(10, 10, 10, 10) // Add padding to increase touch-sensitive area
+            girl.layoutParams = ViewGroup.LayoutParams(girlWidth, girlHeight)
+            board.addView(girl)
+            girlSegments.add(girl)
 
-            var snakeX = snake.x
-            var snakeY = snake.y
+            var girlX = girl.x
+            var girlY = girl.y
 
-            meat.setImageResource(R.drawable.meat)
-            meat.setPadding(-10, -80, -10, -60) // Add padding to increase touch-sensitive area
-            meat.layoutParams = ViewGroup.LayoutParams(meatWidth, meatHeight)
-            board.addView(meat)
+            boy.setImageResource(R.drawable.boy)
+            boy.setPadding(-10, -80, -10, -60) // Add padding to increase touch-sensitive area
+            boy.layoutParams = ViewGroup.LayoutParams(boyWidth, boyHeight)
+            board.addView(boy)
 
             badman.setImageResource(R.drawable.badman) // Assuming "badman" is the name of your vector drawable
             badman.layoutParams = ViewGroup.LayoutParams(badmanWidth, badmanHeight)
@@ -123,19 +123,19 @@ class MainActivity : Activity() {
             // Add logic to position the badman within the board layout
 
             fun checkFoodCollision() {
-                val meatBounds = Rect()
-                meat.getHitRect(meatBounds)
+                val boyBounds = Rect()
+                boy.getHitRect(boyBounds)
 
-                for (segment in snakeSegments) {
+                for (segment in girlSegments) {
                     val segmentBounds = Rect()
                     segment.getHitRect(segmentBounds)
 
-                    if (Rect.intersects(meatBounds, segmentBounds)) {
+                    if (Rect.intersects(boyBounds, segmentBounds)) {
                         val randomX = Random().nextInt(board.width - 200)
                         val randomY = Random().nextInt(board.height - 200)
 
-                        meat.x = randomX.toFloat()
-                        meat.y = randomY.toFloat()
+                        boy.x = randomX.toFloat()
+                        boy.y = randomY.toFloat()
 
 
 
@@ -160,7 +160,7 @@ class MainActivity : Activity() {
                 val badmanBounds = Rect()
                 badman.getHitRect(badmanBounds)
 
-                for (segment in snakeSegments) {
+                for (segment in girlSegments) {
                     val segmentBounds = Rect()
                     segment.getHitRect(segmentBounds)
 
@@ -180,11 +180,11 @@ class MainActivity : Activity() {
             fun moveBadman() {
                 // Implement your logic to move the badman here
                 // For example, you can move it randomly or towards a specific direction
-                // Here's a simple example of moving the badman towards the snake's current position
-                val dx = (meat.x-10) - badman.x
-                val dy = meat.y - badman.y
+                // Here's a simple example of moving the badman towards the girl's current position
+                val dx = (boy.x-10) - badman.x
+                val dy = boy.y - badman.y
 
-                // Move badman towards the snake's position
+                // Move badman towards the girl's position
                 badman.x += dx / 340
                 badman.y += dy / 340
             }
@@ -202,41 +202,41 @@ class MainActivity : Activity() {
 
             val runnable = object : Runnable {
                 override fun run() {
-                    for (i in snakeSegments.size - 1 downTo 1) {
-                        snakeSegments[i].x = snakeSegments[i - 1].x
-                        snakeSegments[i].y = snakeSegments[i - 1].y
+                    for (i in girlSegments.size - 1 downTo 1) {
+                        girlSegments[i].x = girlSegments[i - 1].x
+                        girlSegments[i].y = girlSegments[i - 1].y
                     }
 
                     when (currentDirection) {
                         "up" -> {
-                            snakeY -= 3
-                            if (snakeY < -600) {
-                                snakeY = 760f
+                            girlY -= 3
+                            if (girlY < -600) {
+                                girlY = 760f
                             }
-                            snake.translationY = snakeY
+                            girl.translationY = girlY
                         }
                         "down" -> {
-                            snakeY += 3
-                            if (snakeY > 1020 - snake.height) {
-                                snakeY = -650f
+                            girlY += 3
+                            if (girlY > 1020 - girl.height) {
+                                girlY = -650f
                             }
-                            snake.translationY = snakeY
+                            girl.translationY = girlY
                         }
                         "left" -> {
-                            snakeX -= 3
-                            if (snakeX < -500) {
-                                snakeX = 560f
+                            girlX -= 3
+                            if (girlX < -500) {
+                                girlX = 560f
                             }
-                            snake.scaleX = -1f // Flip the snake horizontally
-                            snake.translationX = snakeX
+                            girl.scaleX = -1f // Flip the girl horizontally
+                            girl.translationX = girlX
                         }
                         "right" -> {
-                            snakeX += 3
-                            if (snakeX > 600 - snake.width) {
-                                snakeX = -500f
+                            girlX += 3
+                            if (girlX > 600 - girl.width) {
+                                girlX = -500f
                             }
-                            snake.scaleX = 1f
-                            snake.translationX = snakeX
+                            girl.scaleX = 1f
+                            girl.translationX = girlX
                         }
                         "pause" -> {
                             // No need to update position when paused
