@@ -27,7 +27,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="390dp"
-        android:layout_height="545dp"
+        android:layout_height="525dp"
         android:layout_marginTop="15dp"
         android:background="@drawable/roundstyle3"
         android:gravity="center"
@@ -103,7 +103,7 @@
         <RelativeLayout
             android:id="@+id/board"
             android:layout_width="390dp"
-            android:layout_height="545dp"
+            android:layout_height="525dp"
             android:background="@drawable/roundstyle3"
             android:gravity="center"
             tools:ignore="MissingConstraints">
