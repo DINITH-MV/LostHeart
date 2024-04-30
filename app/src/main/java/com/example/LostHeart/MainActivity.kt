@@ -183,9 +183,9 @@ class MainActivity : Activity() {
                     segment.getHitRect(segmentBounds)
 
                     if (Rect.intersects(badmanBounds, segmentBounds)) {
-                        isGameEnded = true // End the game if badman collision detected
+                        isGameEnded = true
 
-                        if (!isScreamPlayed) { // Check if the scream has already been played
+                        if (!isScreamPlayed) {
                             scream.start()
                             isScreamPlayed = true // Set the flag to true after playing the sound
                         }
@@ -202,8 +202,6 @@ class MainActivity : Activity() {
 
             // Define a function to move the badman
             fun moveBadman() {
-                // Implement your logic to move the badman here
-                // For example, you can move it randomly or towards a specific direction
                 // Here's a simple example of moving the badman towards the girl's current position
                 val dx = (girl.x) - badman.x
                 val dy = girl.y - badman.y
