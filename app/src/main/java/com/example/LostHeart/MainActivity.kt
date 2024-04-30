@@ -9,6 +9,7 @@ import android.media.MediaPlayer
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.os.Looper
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -68,7 +69,7 @@ class MainActivity : Activity() {
         val girl = ImageView(this)
         val badman = ImageView(this) // Add badman ImageView
         val girlSegments = mutableListOf(girl)
-        val handler = Handler()
+        val handler = Handler(Looper.getMainLooper())
         var delayMillis = 25L
         var currentDirection = "right"
         var scorex = -1
@@ -194,6 +195,7 @@ class MainActivity : Activity() {
                         board.visibility = View.INVISIBLE
                         newgame.visibility = View.INVISIBLE
                         mainMenu.visibility = View.VISIBLE
+                        resume.visibility = View.INVISIBLE
 
                         return // Exit the function once collision is detected
                     }
@@ -211,7 +213,7 @@ class MainActivity : Activity() {
                 badman.y += dy / 340
             }
 
-            val badmanMovementHandler = Handler()
+            val badmanMovementHandler = Handler(Looper.getMainLooper())
             val badmanMovementRunnable = object : Runnable {
                 override fun run() {
                     moveBadman()
